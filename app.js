@@ -3,8 +3,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const connectDB = require('./config/database');
 
-
+// Kết nối database
+connectDB();
 
 var app = express();
 
@@ -23,6 +25,10 @@ app.use('/', require('./routes/index'));
 //localhost:3000/users
 app.use('/users', require('./routes/users'));
 app.use('/products', require('./routes/products'));
+//localhost:3000/roles
+app.use('/roles', require('./routes/roles'));
+//localhost:3000/usersNew
+app.use('/usersNew', require('./routes/usersNew'));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
